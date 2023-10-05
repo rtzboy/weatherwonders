@@ -1,9 +1,15 @@
 import SearchLocation from '@/components/search/SearchLocation';
+import { server } from '@/mocks/server';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const user = userEvent.setup();
+
+// work without this, so why i am using it lol, so this onlu should be used me component render data ?
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 describe('SearchLocation Component', () => {
 	it('should show the placeholder correctly', () => {

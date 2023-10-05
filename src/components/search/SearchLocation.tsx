@@ -1,8 +1,12 @@
 'use client';
 
 import { searchCity } from '@/lib/api/weather_api';
-import { SEARCH_STATE, searchCitiesReducer } from '@/lib/reducers/searchCitiesReducer';
-import { useEffect, useReducer, useRef } from 'react';
+import {
+	SEARCH_STATE,
+	SearchActions,
+	searchCitiesReducer
+} from '@/lib/reducers/searchCitiesReducer';
+import { Dispatch, useEffect, useReducer, useRef } from 'react';
 import LocationIcon from '../icons/LocationIcon';
 import SpanStyled from '../icons/SpanStyled';
 import ResultState from './ResultState';
@@ -12,15 +16,10 @@ const SearchLocation = () => {
 	const [querySearch, dispatchQuery] = useReducer(searchCitiesReducer, SEARCH_STATE);
 	const idTime = useRef<undefined | NodeJS.Timeout>(undefined);
 
-	const callLocations = async (city: string) => {
-		const result = await searchCity(city);
-		dispatchQuery({ type: 'SEARCH_SUCCESS', payload: result });
-	};
-
 	useEffect(() => {
 		if (!querySearch.query) return;
 		idTime.current = setTimeout(() => {
-			callLocations(querySearch.query);
+			callLocations(querySearch.query, dispatchQuery);
 		}, 300);
 		return () => clearTimeout(idTime.current);
 	}, [querySearch.query]);
@@ -48,6 +47,11 @@ const SearchLocation = () => {
 			<SearchBox locations={querySearch.cities} />
 		</div>
 	);
+};
+
+const callLocations = async (city: string, dispatchQuery: Dispatch<SearchActions>) => {
+	const result = await searchCity(city);
+	dispatchQuery({ type: 'SEARCH_SUCCESS', payload: result });
 };
 
 export default SearchLocation;

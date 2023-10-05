@@ -7,7 +7,7 @@ export const searchCity = async (city: string): Promise<LocationsT | undefined> 
 
 	try {
 		const response = await fetch(url);
-		if (!response.ok) throw new Error('Fetch cities fetch error\n');
+		if (!response.ok) throw new Error('Error fetch cities\n');
 
 		const citiesResult: LocationsT = await response.json();
 
