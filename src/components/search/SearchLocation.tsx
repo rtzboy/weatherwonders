@@ -31,15 +31,20 @@ const SearchLocation = () => {
 				className='inline-block absolute top-1/2 -translate-y-1/2 left-1.5'
 				iconStyle='h-6'
 			/>
-			<ResultState search={querySearch.query} loading={querySearch.loading} />
+			<ResultState
+				search={querySearch.query}
+				loading={querySearch.loading}
+				dispatchQuery={dispatchQuery}
+			/>
 			<input
 				onChange={evt => {
 					dispatchQuery({ type: 'SEARCH_TERM', payload: evt.target.value });
 					if (evt.target.value === '') dispatchQuery({ type: 'SEARCH_RESET' });
 				}}
+				tabIndex={1}
 				type='text'
 				value={querySearch.query}
-				className={`w-full bg-[#537FE7]/10 outline-none px-9 py-2 ${
+				className={`w-full bg-[#537FE7]/10 px-9 py-2 ${
 					querySearch.cities ? 'rounded-t-xl' : 'rounded-xl'
 				}`}
 				placeholder='Search by cities...'

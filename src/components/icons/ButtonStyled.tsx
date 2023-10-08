@@ -3,11 +3,12 @@ type Props = {
 	onClick: () => void;
 	className?: string;
 	iconStyle?: string;
+	tabIdx?: number;
 };
 
-const ButtonStyled = ({ icon: Icon, onClick, className, iconStyle }: Props) => {
+const ButtonStyled = ({ icon: Icon, onClick, tabIdx, className, iconStyle }: Props) => {
 	return (
-		<button onClick={onClick} className={`${className || ''}`}>
+		<button onClick={onClick} tabIndex={tabIdx} className={`${className || ''}`}>
 			<Icon className={`${iconStyle || ''}`} />
 		</button>
 	);
