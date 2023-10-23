@@ -41,7 +41,7 @@ const SearchLocation = () => {
 					dispatchQuery({ type: 'SEARCH_TERM', payload: evt.target.value });
 					if (evt.target.value === '') dispatchQuery({ type: 'SEARCH_RESET' });
 				}}
-				tabIndex={1}
+				tabIndex={2}
 				type='text'
 				value={querySearch.query}
 				className={`w-full bg-[#537FE7]/10 px-9 py-2 ${
