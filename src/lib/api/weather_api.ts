@@ -10,7 +10,7 @@ export type ResultWeather = {
 };
 
 export const searchCity = async (city: string): Promise<LocationsT | undefined> => {
-	const url = `${URL_WEATHER}/geo/1.0/direct?q=${city}&limit=5&appid=${process.env.WEATHER_KEY}`;
+	const url = `${URL_WEATHER}/geo/1.0/direct?q=${city}&limit=5&appid=043bdfbea3179a6c077c870e14914534`;
 
 	try {
 		const response = await fetch(url);
@@ -23,31 +23,6 @@ export const searchCity = async (city: string): Promise<LocationsT | undefined> 
 			(city, idx, arr) => idx === arr.findIndex(elm => elm.lat === city.lat)
 		);
 		return filterLocations;
-	} catch (e) {
-		if (e instanceof Error) console.log(e.stack);
-	}
-};
-
-export const weatherData = async (lat: string, lon: string): Promise<ResultWeather | undefined> => {
-	try {
-		const [resCurrent, resForecast] = await Promise.all([
-			fetch(
-				`${URL_WEATHER}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_KEY}`
-			),
-			fetch(
-				`${URL_WEATHER}/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_KEY}`
-			)
-		]);
-
-		if (!resForecast.ok) throw new Error('Error fetch cities\n');
-
-		const currentResult: CurrentWeatherType = await resCurrent.json();
-		const forecastResult: ForecastWeatherType = await resForecast.json();
-
-		const parsedCurrentWeather = CurrentWeatherSchema.parse(currentResult);
-		const parsedForecastWeather = ForecastWeatherSchema.parse(forecastResult);
-
-		return { parsedCurrentWeather, parsedForecastWeather };
 	} catch (e) {
 		if (e instanceof Error) console.log(e.stack);
 	}

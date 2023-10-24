@@ -27,7 +27,7 @@ const ResultState = ({ search, loading, dispatchQuery }: Props) => {
 		<ButtonStyled
 			icon={XMarkIcon}
 			onClick={() => dispatchQuery({ type: 'SEARCH_RESET' })}
-			tabIdx={2}
+			tabIdx={3}
 			className='inline-block absolute top-1/2 -translate-y-1/2 right-1.5'
 			iconStyle='h-6'
 		/>

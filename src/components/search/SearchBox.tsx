@@ -1,4 +1,6 @@
+import { getURLFlag } from '@/lib/helpers/country';
 import { LocationsT } from '@/models/Cities';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 type Props = {
@@ -26,36 +28,30 @@ const SearchBox = ({ locations }: Props) => {
 			{locations.map((location, idx) => (
 				<li
 					key={location.lat}
-					tabIndex={3 + idx}
-					onKeyUp={evt => {
-						if (evt.key === 'Enter') {
-							alert(location.name);
-						}
-					}}
 					onMouseEnter={() => setItemSelected(idx)}
+					onMouseLeave={() => setItemSelected(-1)}
 					onFocus={() => setItemSelected(idx)}
-					onClick={() => alert(location.name)}
-					className={`flex cursor-pointer items-center gap-3 p-3 transition-all ${
-						itemSelected === idx ? 'bg-slate-600 last:rounded-b-xl' : ''
-					}`}
+					className={`${itemSelected === idx ? 'bg-slate-600 last:rounded-b-xl' : ''}`}
 				>
-					<div>
-						<img src={getURLFlag(location.country)} alt={location.name} className='h-3 w-5' />
-					</div>
-					<div>
-						<span>{location.name}, </span>
-						<span> {location.country}</span>
-					</div>
-					<div>
-						<span className='text-sm italic'>{location.state}</span>
-					</div>
+					<Link
+						href={`/locations/${location.lat},${location.lon}`}
+						className='flex items-center gap-3 p-3'
+					>
+						<div>
+							<img src={getURLFlag(location.country)} alt={location.name} className='h-3 w-5' />
+						</div>
+						<div>
+							<span>{location.name}, </span>
+							<span> {location.country}</span>
+						</div>
+						<div>
+							<span className='text-sm italic'>{location.state}</span>
+						</div>
+					</Link>
 				</li>
 			))}
 		</ul>
 	);
 };
-
-export const getURLFlag = (code: string): string =>
-	`https://flagcdn.com/48x36/${code.toLowerCase()}.png`;
 
 export default SearchBox;
