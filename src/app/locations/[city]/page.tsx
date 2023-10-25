@@ -17,15 +17,31 @@ const City = async ({ params }: { params: { city: string } }) => {
 				<Temperature parsedCurrentWeather={parsedCurrentWeather} />
 				<div className='flex flex-col flex-1 bg-slate-700/50 rounded-3xl gap-4 p-4'>
 					<p>Today&apos;s Highlights</p>
-					<div className='grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4 justify-items-center'>
-						<Wind parsedCurrentWeather={parsedCurrentWeather} />
-						<SunRiseSet
-							sunrise={parsedCurrentWeather.sys.sunrise}
-							sunset={parsedCurrentWeather.sys.sunset}
-							datetime={parsedCurrentWeather.dt}
-							timezone={parsedCurrentWeather.timezone}
-						/>
-						<Time parsedCurrentWeather={parsedCurrentWeather} />
+					<div className='flex flex-col gap-4'>
+						<div className='flex gap-4 flex-wrap'>
+							<Wind parsedCurrentWeather={parsedCurrentWeather} />
+							<SunRiseSet
+								sunrise={parsedCurrentWeather.sys.sunrise}
+								sunset={parsedCurrentWeather.sys.sunset}
+								datetime={parsedCurrentWeather.dt}
+								timezone={parsedCurrentWeather.timezone}
+							/>
+							<Time parsedCurrentWeather={parsedCurrentWeather} />
+						</div>
+						<div className='flex gap-4 flex-wrap'>
+							<div className='max-w-[280px] w-full bg-cyan-800/50 rounded-3xl p-4'>
+								<div>Humidity</div>
+								<p>{parsedCurrentWeather.main.humidity} %</p>
+							</div>
+							<div className='max-w-[280px] w-full bg-cyan-800/50 rounded-3xl p-4'>
+								<div>Visibility</div>
+								<p>{parsedCurrentWeather.visibility}m</p>
+							</div>
+							<div className='max-w-[280px] w-full bg-cyan-800/50 rounded-3xl p-4'>
+								<div>Feels Like</div>
+								<p>{(parsedCurrentWeather.main.feels_like - 273).toFixed(1)} °C</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

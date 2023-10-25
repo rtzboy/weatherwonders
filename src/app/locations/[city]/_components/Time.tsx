@@ -40,11 +40,30 @@ const Time = ({ parsedCurrentWeather }: Props) => {
 	return (
 		<div className='p-4 max-w-[280px] w-full bg-cyan-800/50 rounded-3xl flex flex-col gap-4'>
 			<div className='text-lg'>Time</div>
-			<div>Timezone: {dateUTC(parsedCurrentWeather.timezone)}</div>
-			<div>Current Date: {date}</div>
-			<div>Current Time: {hour}</div>
-			<div>Latitude: {parsedCurrentWeather.coord.lat}</div>
-			<div>Longitude: {parsedCurrentWeather.coord.lon}</div>
+			<table>
+				<tbody>
+					<tr>
+						<td>Timezone:</td>
+						<td>{dateUTC(parsedCurrentWeather.timezone)}</td>
+					</tr>
+					<tr>
+						<td>Current Date:</td>
+						<td>{date}</td>
+					</tr>
+					<tr>
+						<td>Current Time:</td>
+						<td>{hour}</td>
+					</tr>
+					<tr>
+						<td>Latitude:</td>
+						<td>{parsedCurrentWeather.coord.lat}</td>
+					</tr>
+					<tr>
+						<td>Longitude:</td>
+						<td>{parsedCurrentWeather.coord.lon}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	);
 };

@@ -10,14 +10,14 @@ const Wind = ({ parsedCurrentWeather }: Props) => {
 		<div className='p-4 max-w-[280px] w-full bg-cyan-800/50 rounded-3xl flex flex-col gap-4'>
 			<div className='text-lg'>Wind Status</div>
 			<div className='relative flex justify-center w-[240] h-[200]'>
-				<Image src='/compass.webp' alt='compass' width={200} height={200} />
-				<div className='absolute w-[170px] h-[170px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+				<Image src='/compass.webp' alt='compass' width={170} height={170} />
+				<div className='absolute w-[140px] h-[140px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
 					<Image
 						style={{ transform: `rotate(${parsedCurrentWeather.wind.deg}deg)` }}
 						src='/needle.webp'
 						alt='needle'
-						width={170}
-						height={170}
+						width={140}
+						height={140}
 						className='absolute opacity-50'
 					/>
 				</div>
