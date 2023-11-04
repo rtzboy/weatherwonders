@@ -1,3 +1,5 @@
+import { weekDays } from '@/constants/WeatherDate';
+
 export const twodecimals = (number: number) => Math.round(number * 100) / 100;
 
 export const toLocaleDate = (utcTime: number, timezone: number) => {
@@ -42,13 +44,21 @@ export const dateUTC = (timezone: number): string => {
 };
 
 export const currentHourLocale = (date: Date, timezone: number) => {
-	const timezoneInHours = Math.abs(timezone / 3600);
-	const timezoneInMinutes = Math.abs((timezone / 60) % 60);
-	const sign = timezone >= 0 ? '+' : '-';
+	const currHour = toLocaleDate(date.getTime(), timezone);
+	return currHour.split(' ');
+};
 
-	const currHour = new Date(date);
-	currHour.setHours(currHour.getHours() + parseInt(sign + timezoneInHours));
-	currHour.setMinutes(currHour.getMinutes() + parseInt(sign + timezoneInMinutes));
+export const forecastWeek = (dateStr: string) => {
+	const date = new Date(dateStr);
+	const dayOfWeek = weekDays[date.getDay()];
+	const dayOfMonth = date.getDate();
+	return `${dayOfWeek} - ${dayOfMonth}`;
+};
 
-	return currHour.toISOString().split('T').join(' ').slice(0, -5).split(' ');
+export const onlyHour = (dateString: string) => {
+	const date = new Date(dateString);
+	const hours = date.getHours().toString().padStart(2, '0');
+	const minutes = date.getMinutes().toString().padStart(2, '0');
+
+	return `${hours}:${minutes}`;
 };

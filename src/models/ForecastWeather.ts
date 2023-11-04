@@ -34,3 +34,5 @@ export const ForecastWeatherSchema = z.object({
 });
 
 export type ForecastWeatherType = z.infer<typeof ForecastWeatherSchema>;
+
+export type ForecastListType = z.infer<typeof ListSchema>;

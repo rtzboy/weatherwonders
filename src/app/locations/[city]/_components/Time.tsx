@@ -29,7 +29,7 @@ const Time = ({ parsedCurrentWeather }: Props) => {
 	// useEffect(() => {
 	// 	routeRef.current = setInterval(() => {
 	// 		router.refresh();
-	// 	}, 20000);
+	// 	}, 60000);
 	// 	return () => {
 	// 		clearInterval(routeRef.current);
 	// 	};
@@ -48,11 +48,11 @@ const Time = ({ parsedCurrentWeather }: Props) => {
 					</tr>
 					<tr>
 						<td>Current Date:</td>
-						<td>{date}</td>
+						<td suppressHydrationWarning>{date}</td>
 					</tr>
 					<tr>
 						<td>Current Time:</td>
-						<td>{hour}</td>
+						<td suppressHydrationWarning>{hour}</td>
 					</tr>
 					<tr>
 						<td>Latitude:</td>

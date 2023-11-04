@@ -1,4 +1,5 @@
 import { ResultWeather, getWeather } from '@/lib/api/weather_api';
+import Forecast from './_components/Forecast';
 import SunRiseSet from './_components/SunRiseSet';
 import Temperature from './_components/Temperature';
 import Time from './_components/Time';
@@ -9,7 +10,7 @@ const City = async ({ params }: { params: { city: string } }) => {
 
 	if (!weather) return <main>Something Happened!</main>;
 
-	const { parsedCurrentWeather } = weather;
+	const { parsedCurrentWeather, parsedForecastWeather } = weather;
 
 	return (
 		<main className='max-w-7xl mx-auto px-4'>
@@ -45,6 +46,7 @@ const City = async ({ params }: { params: { city: string } }) => {
 					</div>
 				</div>
 			</section>
+			<Forecast parsedForecastWeather={parsedForecastWeather} />
 		</main>
 	);
 };
