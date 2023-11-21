@@ -53,3 +53,5 @@ export const CurrentWeatherSchema = z.object({
 });
 
 export type CurrentWeatherType = z.infer<typeof CurrentWeatherSchema>;
+
+export type RainType = z.infer<typeof RainSchema>;

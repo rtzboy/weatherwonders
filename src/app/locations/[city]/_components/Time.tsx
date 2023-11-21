@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { currentHourLocale, dateUTC } from '@/lib/helpers/time';
 import { CurrentWeatherType } from '@/models/CurrentWeather';
@@ -17,14 +17,14 @@ const Time = ({ parsedCurrentWeather }: Props) => {
 
 	const router = useRouter();
 
-	// useEffect(() => {
-	// 	dateRef.current = setInterval(() => {
-	// 		setDate(new Date());
-	// 	}, 1000);
-	// 	return () => {
-	// 		clearInterval(dateRef.current);
-	// 	};
-	// }, []);
+	useEffect(() => {
+		dateRef.current = setInterval(() => {
+			setDate(new Date());
+		}, 1000);
+		return () => {
+			clearInterval(dateRef.current);
+		};
+	}, []);
 
 	// useEffect(() => {
 	// 	routeRef.current = setInterval(() => {
@@ -38,29 +38,33 @@ const Time = ({ parsedCurrentWeather }: Props) => {
 	const [date, hour] = currentHourLocale(now, parsedCurrentWeather.timezone);
 
 	return (
-		<div className='p-4 max-w-[280px] w-full bg-cyan-800/50 rounded-3xl flex flex-col gap-4'>
+		<div className='p-4 max-w-[250px] w-full bg-cyan-800/50 rounded-3xl flex flex-col gap-2'>
 			<div className='text-lg'>Time</div>
 			<table>
 				<tbody>
 					<tr>
-						<td>Timezone:</td>
-						<td>{dateUTC(parsedCurrentWeather.timezone)}</td>
+						<td className='py-1'>Timezone:</td>
+						<td className='py-1'>{dateUTC(parsedCurrentWeather.timezone)}</td>
 					</tr>
 					<tr>
-						<td>Current Date:</td>
-						<td suppressHydrationWarning>{date}</td>
+						<td className='py-1'>Current Date:</td>
+						<td suppressHydrationWarning className='py-1'>
+							{date}
+						</td>
 					</tr>
 					<tr>
-						<td>Current Time:</td>
-						<td suppressHydrationWarning>{hour}</td>
+						<td className='py-1'>Current Time:</td>
+						<td suppressHydrationWarning className='py-1'>
+							{hour}
+						</td>
 					</tr>
 					<tr>
-						<td>Latitude:</td>
-						<td>{parsedCurrentWeather.coord.lat}</td>
+						<td className='py-1'>Latitude:</td>
+						<td className='py-1'>{parsedCurrentWeather.coord.lat}</td>
 					</tr>
 					<tr>
-						<td>Longitude:</td>
-						<td>{parsedCurrentWeather.coord.lon}</td>
+						<td className='py-1'>Longitude:</td>
+						<td className='py-1'>{parsedCurrentWeather.coord.lon}</td>
 					</tr>
 				</tbody>
 			</table>

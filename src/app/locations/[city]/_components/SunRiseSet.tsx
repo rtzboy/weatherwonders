@@ -25,18 +25,18 @@ const SunRiseSet = ({ sunrise, sunset, datetime, timezone }: Props) => {
 	let sunrisePoint = 3.16;
 	let sunsetPoint = 6.27;
 
-	const r = 124; // radio
+	const r = 109; // radius
 
-	let angulo = twodecimals((sunsetPoint - sunrisePoint) * (todayValue / 100) + sunrisePoint);
+	let angle = twodecimals((sunsetPoint - sunrisePoint) * (todayValue / 100) + sunrisePoint);
 
-	let left = twodecimals(124 + r * Math.cos(angulo + ((2 * Math.PI) / 1) * 0));
-	let top = twodecimals(124 + r * Math.sin(angulo + ((2 * Math.PI) / 1) * 0));
+	let left = twodecimals(109 + r * Math.cos(angle + ((2 * Math.PI) / 1) * 0));
+	let top = twodecimals(109 + r * Math.sin(angle + ((2 * Math.PI) / 1) * 0));
 
 	return (
-		<div className='p-4 max-w-[280px] w-full bg-cyan-800/50 rounded-3xl flex flex-col gap-4'>
+		<div className='p-4 max-w-[250px] w-full bg-cyan-800/50 rounded-3xl flex flex-col gap-2'>
 			<div className='text-lg'>Sunrise Sunset</div>
 			<div className='relative'>
-				<div className='w-full rounded-t-full h-[124px] border-dashed relative overflow-hidden'>
+				<div className='w-full rounded-t-full h-[109px] relative overflow-hidden'>
 					{showBgDayNight(todayValue, left)}
 				</div>
 				{showIconSunMoon(todayValue, left, top)}
@@ -62,7 +62,7 @@ const showBgDayNight = (value: number, left: number) => {
 		return (
 			<div
 				style={{ width: `${left}px` }}
-				className={`h-full absolute left-0 top-0 bg-yellow-400/50 gradient_right`}
+				className={`h-full absolute left-0 top-0 bg-yellow-400/50 gradient_bottom`}
 			/>
 		);
 	return <div className='h-full w-full absolute left-0 top-0 bg-black/60 gradient_bottom' />;

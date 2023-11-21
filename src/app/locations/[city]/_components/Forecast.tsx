@@ -42,7 +42,7 @@ const Forecast = ({ parsedForecastWeather }: Props) => {
 			<div ref={scrollRef} className='overflow-x-scroll flex flex-nowrap pb-4'>
 				{filterWeather.map((elm, idx) => (
 					<div key={idx} className='border-r border-r-neutral-500 last:border-none px-4'>
-						<div className='font-semibold sticky inline-block left-0'>
+						<div className='font-semibold sticky inline-block left-0 whitespace-nowrap tracking-wider'>
 							{forecastWeek(elm[0].dt_txt)}
 						</div>
 						<ul className='flex gap-4'>
