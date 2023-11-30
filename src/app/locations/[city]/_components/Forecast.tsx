@@ -36,7 +36,7 @@ const Forecast = ({ parsedForecastWeather }: Props) => {
 	);
 
 	return (
-		<section className='bg-slate-700/50 rounded-3xl mt-4 p-4 flex flex-col gap-4'>
+		<section className='bg-slate-700/20 rounded-3xl mt-4 p-4 flex flex-col gap-4'>
 			<h3 className='text-2xl'>5-day Forecast</h3>
 			<hr className='border-neutral-500' />
 			<div ref={scrollRef} className='overflow-x-scroll flex flex-nowrap pb-4'>

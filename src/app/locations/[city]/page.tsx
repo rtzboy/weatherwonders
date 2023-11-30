@@ -16,11 +16,10 @@ const City = async ({ params }: { params: { city: string } }) => {
 		<main className='max-w-7xl mx-auto px-4'>
 			<section className='flex flex-col md:flex-row gap-4'>
 				<Temperature parsedCurrentWeather={parsedCurrentWeather} />
-				<div className='flex flex-col flex-1 bg-slate-700/50 rounded-3xl gap-4 p-4'>
+				<div className='flex flex-col flex-1 bg-slate-700/20 rounded-xl gap-4 p-4'>
 					<p>Today&apos;s Highlights</p>
-					<div className='flex flex-col gap-4'>
-						<div className='flex gap-4 flex-wrap justify-evenly'>
-							<Wind parsedCurrentWeather={parsedCurrentWeather} />
+					<div className='flex flex-col gap-4 lg:flex-row'>
+						<div className='flex gap-4 justify-evenly flex-1 flex-col items-center min-[500px]:flex-row lg:items-start'>
 							<SunRiseSet
 								sunrise={parsedCurrentWeather.sys.sunrise}
 								sunset={parsedCurrentWeather.sys.sunset}
@@ -29,21 +28,22 @@ const City = async ({ params }: { params: { city: string } }) => {
 							/>
 							<Time parsedCurrentWeather={parsedCurrentWeather} />
 						</div>
-						<div className='flex gap-4 flex-wrap justify-evenly'>
-							<div className='max-w-[250px] w-full bg-cyan-800/50 rounded-3xl p-4'>
+						<div className='flex flex-wrap justify-evenly lg:flex-col lg:mr-12'>
+							<div className='p-2'>
 								<div>Humidity</div>
 								<p className='text-xl'>{parsedCurrentWeather.main.humidity} %</p>
 							</div>
-							<div className='max-w-[250px] w-full bg-cyan-800/50 rounded-3xl p-4'>
+							<div className='p-2'>
 								<div>Visibility</div>
 								<p className='text-xl'>{parsedCurrentWeather.visibility}m</p>
 							</div>
-							<div className='max-w-[250px] w-full bg-cyan-800/50 rounded-3xl p-4'>
+							<div className='p-2'>
 								<div>Feels Like</div>
 								<p className='text-xl'>
 									{(parsedCurrentWeather.main.feels_like - 273).toFixed(1)} °C
 								</p>
 							</div>
+							<Wind parsedCurrentWeather={parsedCurrentWeather} />
 						</div>
 					</div>
 				</div>

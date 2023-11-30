@@ -26,19 +26,19 @@ const Time = ({ parsedCurrentWeather }: Props) => {
 		};
 	}, []);
 
-	// useEffect(() => {
-	// 	routeRef.current = setInterval(() => {
-	// 		router.refresh();
-	// 	}, 60000);
-	// 	return () => {
-	// 		clearInterval(routeRef.current);
-	// 	};
-	// }, [router]);
+	useEffect(() => {
+		routeRef.current = setInterval(() => {
+			router.refresh();
+		}, 60000);
+		return () => {
+			clearInterval(routeRef.current);
+		};
+	}, [router]);
 
 	const [date, hour] = currentHourLocale(now, parsedCurrentWeather.timezone);
 
 	return (
-		<div className='p-4 max-w-[250px] w-full bg-cyan-800/50 rounded-3xl flex flex-col gap-2'>
+		<div className='p-2 flex flex-col gap-2'>
 			<div className='text-lg'>Time</div>
 			<table>
 				<tbody>
